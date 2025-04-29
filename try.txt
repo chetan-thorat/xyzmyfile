@@ -1,0 +1,163 @@
+/*
+drop function if exists sumSalary;
+delimiter $
+
+create function sumSalary(ab int) returns int deterministic
+begin
+	declare x int default 0;
+	select sum(sal) into x from emp where deptno=ab;
+
+	return x;
+end $
+delimiter ;
+
+*/
+
+
+
+
+/*
+drop function if exists myfun;
+delimiter $
+
+create function myfun(ab varchar(40)) returns varchar(100) deterministic
+begin
+	declare x varchar(40);
+select concat(username, ', ', password) into x from login where email_ID = ab;
+
+	if x is null then
+         return "not exists";
+	else
+		return x;
+       	end if;
+end $
+delimiter ;
+
+*/
+
+
+/*
+drop function if exists myfun;
+delimiter $
+
+create function myfun(ab int) returns int deterministic
+begin
+	declare x int;
+declare y int;
+declare z int;
+declare result int;
+
+select sum(10th) into x from student_new where studentId=ab;
+select sum(12th) into y from student_new where studentId=ab;
+select sum(BE) into z from student_new where studentId=ab;
+
+set result = x+y+z;
+	
+	
+	return result;
+end $
+delimiter ;
+*/
+
+
+/*
+drop function if exists autonumber;
+delimiter $
+
+create function autonumber() returns int deterministic
+begin
+    declare newstudentid int;
+
+    insert into student_new (namefirst, namelast, dob, emailid)
+    values ('temp', 'user', null, 'temp@example.com');
+
+    set newstudentid = last_insert_id();
+
+    return newstudentid;
+end $
+delimiter ;
+
+
+*/
+/*
+drop procedure if exists pro1;
+delimiter $
+create procedure pro1(in a int, in b int, out result int)
+begin
+	set @result := a + b;
+	select @result;
+	
+	
+end $
+delimiter ;
+
+*/
+/*
+drop procedure if exists pro1;
+delimiter $
+create procedure pro1(in annualSal int, in bonus int, out result int)
+begin	
+	set annualSal = ifnull(annualSal,0);
+
+	set result = annualSal + (annualSal*bonus/100);
+
+	
+
+	
+	
+	
+end $
+delimiter ;
+*/
+
+/*
+
+drop procedure if exists pro2;
+delimiter $
+create procedure pro2()
+begin	
+	declare result int;
+	select max(deptno) into result from dept;
+select result;
+
+end $
+delimiter ;
+
+*/
+
+/*
+drop procedure if exists pro2;
+delimiter $
+create procedure pro2(in string1 varchar(20))
+begin	
+	set @ab := reverse(string1);
+	
+
+
+
+end $
+delimiter ;
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

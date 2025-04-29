@@ -1,0 +1,137 @@
+/*
+drop function if exists fn1;
+delimiter $
+create function fn1(msg varchar(100))  returns varchar(100) deterministic
+begin
+	
+	set @a := msg;
+	
+	return @a;
+end $
+delimiter ;
+
+
+
+------------------------------------------------------
+*/
+/*
+drop function if exists fn1;
+delimiter $
+create function fn1(x int, y int)  returns int deterministic
+begin
+	set @a := x + y;
+
+	return @a;
+end $
+delimiter ;
+
+
+
+-----------------------------------------------------
+
+
+drop procedure if exists display;
+delimiter $
+create procedure display(msg varchar(1000))
+	begin
+	declare a varchar(1000);
+		select msg into @w;
+	end $
+delimiter ;
+
+drop function if exists fn1;
+delimiter $
+create function fn1()  returns int deterministic
+begin
+	declare x int default 0;
+	
+	select max(deptno) + 1 into x from dept;
+	call display('baroda');
+	return x;
+end $
+delimiter ;
+
+----------------------------------------------------
+
+
+
+DROP FUNCTION IF EXISTS fn1;
+delimiter $
+CREATE FUNCTION fn1() RETURNS VARCHAR(40) deterministic
+begin
+    declare x, y, z VARCHAR(40) default "";
+    declare cnt INT default 1;
+    lbl:loop
+       SELECT CAST(CHAR(FLOOR(65 + RAND() * 27)) as CHAR) INTO y;
+       SELECT CAST(CHAR(FLOOR( 97 + RAND() * 27)) as CHAR) INTO z;
+       SET x := CONCAT(x, y, z);
+       if cnt > 2 then
+          leave lbl;
+       end if;
+       SET cnt := cnt + 1;
+    end loop lbl;
+    return(x);
+end $
+delimiter ;
+
+-------------------------------------------------------------------
+*/
+drop function if exists fn1;
+delimiter $
+create function fn1() returns varchar(100) deterministic
+begin
+	declare x,y,z varchar(100) default "";
+	declare cnt int default 1;
+
+	ab: loop
+	SELECT CAST(char(floor(65+ rand() *27)) as char) into y;
+	select cast(char(floor(97+ rand()*27))as char)into z;
+	set x:= concat(x,y,z);
+	if cnt>3 then
+		leave ab;
+	end if;
+
+	set cnt:= cnt+1;
+	end loop ab;
+
+	return(x);
+end $
+delimiter ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
